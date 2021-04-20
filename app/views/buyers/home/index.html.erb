@@ -1,1 +1,9 @@
 <p>Buyer Home</p>
+
+<%if buyer_signed_in?%>
+    <h1>buyer_signed_in</h1>
+    <%= link_to "Sign Out", destroy_buyer_session_path,method: :delete, class:"nav-link active" %>
+    <%= link_to "Edit Profile", edit_buyer_registration_path, class:"nav-link active" %>  
+<%else%>
+  
+<%end%>

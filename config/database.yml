@@ -1,19 +1,21 @@
 default: &default
-  host: <%= ENV.fetch("DATABASE_HOST") { 'localhost' } %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  port: 5432
   adapter: postgresql
-  username: <%= ENV.fetch("DATABASE_USERNAME") { '' } %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") { '' } %>
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { '' } %>
+  database: pgapp_development2
+  host: localhost
 
 test:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME_TEST") { '' } %>
+  database: pgapp_test2
 
 production:
-  <<: *default
-  detabase: <%= ENV.fetch("DATABASE_NAME") { '' } %>
+  host: localhost
+  adapter: postgresql
+  username: 
+  password: 
+  timeout: 5000
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
