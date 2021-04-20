@@ -42,3 +42,8 @@ yarn-debug.log*
 
 .vscode
 .env
+
+/config/database.yml
+Gemfile
+Gemfile.lock
+/config/initializers/app_env_vars.rb
