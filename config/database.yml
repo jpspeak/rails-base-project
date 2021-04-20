@@ -1,21 +1,22 @@
 default: &default
-  adapter: <%= ENV.fetch("DATABASE_ADAPTER") %>
-  encoding: <%= ENV.fetch("DATABASE_ENCODING") %>
+  host: <%= ENV.fetch("DATABASE_HOST") { 'localhost' } %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
+  adapter: postgresql
+  username: <%= ENV.fetch("DATABASE_USERNAME") { '' } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { '' } %>
+  encoding: <%= ENV.fetch("DATABASE_ENCODING") %>
+  
 
 development:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_DEVELOPMENT") %>
-  host: <%= ENV.fetch("DATABASE_HOST") %>
+  database: <%= ENV.fetch("DATABASE_DEVELOPMENT") { '' } %>
 
 test:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_TEST") %>
+  database: <%= ENV.fetch("DATABASE_TEST") { '' } %>
 
 production:
-  host: <%= ENV.fetch("DATABASE_HOST") %>
-  adapter: <%= ENV.fetch("DATABASE_ADAPTER") %>
-  username: 
-  password: 
-  timeout: <%= ENV.fetch("DATABASE_TIMEOUT") %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_DEVELOPMENT") { '' } %>
+
