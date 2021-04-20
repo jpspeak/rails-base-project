@@ -1,21 +1,21 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: <%= ENV.fetch("DATABASE_ADAPTER") %>
+  encoding: <%= ENV.fetch("DATABASE_ENCODING") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: pgapp_development2
-  host: localhost
+  database: <%= ENV.fetch("DATABASE_DEVELOPMENT") %>
+  host: <%= ENV.fetch("DATABASE_HOST") %>
 
 test:
   <<: *default
-  database: pgapp_test2
+  database: <%= ENV.fetch("DATABASE_TEST") %>
 
 production:
-  host: localhost
-  adapter: postgresql
+  host: <%= ENV.fetch("DATABASE_HOST") %>
+  adapter: <%= ENV.fetch("DATABASE_ADAPTER") %>
   username: 
   password: 
-  timeout: 5000
+  timeout: <%= ENV.fetch("DATABASE_TIMEOUT") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
