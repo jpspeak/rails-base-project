@@ -1,1 +1,9 @@
 <p>Broker Home</p>
+
+<%if broker_signed_in?%>
+    <h1>broker_signed_in</h1>
+    <%= link_to "Sign Out", destroy_broker_session_path,method: :delete, class:"nav-link active" %>
+    <%= link_to "Edit Profile", edit_broker_registration_path, class:"nav-link active" %>  
+<%else%>
+  
+<%end%>

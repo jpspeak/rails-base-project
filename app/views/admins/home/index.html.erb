@@ -1,1 +1,9 @@
 <p>Admin Home</p>
+
+<%if admin_signed_in?%>
+    <h1>admin_signed_in</h1>
+    <%= link_to "Sign Out", destroy_admin_session_path,method: :delete, class:"nav-link active" %>
+    <%= link_to "Edit Profile", edit_admin_registration_path, class:"nav-link active" %>  
+<%else%>
+  
+<%end%>
