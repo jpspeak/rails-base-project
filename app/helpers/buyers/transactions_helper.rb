@@ -1,0 +1,2 @@
+module Buyers::TransactionsHelper
+end

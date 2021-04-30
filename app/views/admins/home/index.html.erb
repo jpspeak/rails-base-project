@@ -1,9 +1,86 @@
-<p>Admin Home</p>
+<div class='container mx-auto'>
+    <div class='flex space-x-2 divide-x min-h-screen'>
+        <div class='w-1/2 pt-10 px-4'>
+            <div class='flex items-center mb-8'>
+                <h3 class='text-3xl font-semibold flex-grow'>Buyers</h3>
+                <%= link_to  new_buyer_path, class: 'border px-3 py-1 rounded-lg shadow' do %>
+                    <i class="fas fa-plus mr-2"></i> Add Buyer 
+                <% end %>
+            </div>
+            <% if @buyers.count != 0 %>
+                <table class='w-full'>
+                    <thead>
+                        <tr class='text-gray-500 shadow-md border'>
+                            <th class='text-left font-normal py-2 pl-2'>Email address</th>
+                            <th class='font-normal py-2 pl-2'>Date registered</th>
+                            <th class='font-normal'>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @buyers.each do |buyer| %>  
+                            <tr class="shadow border-b">
+                                <td class='py-4 pl-2'><%= buyer.email %></td>
+                                <td class='text-center'><%= buyer.created_at.to_date %></td>
+                                <td class='text-center text-gray-300'>
+                                    <%= link_to buyer_path(buyer) do %>
+                                        <i class="far fa-eye px-1"></i>
+                                    <% end %>
+                                    <%= link_to edit_buyer_path(buyer) do %>
+                                        <i class="fas fa-pen px-1"></i>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            <% else %>
+                <img src='/svg/no-result.svg' class='w-44 h-44 mx-auto mt-20'>
+                <p class="text-center mt-10 text-2xl text-gray-500">No Data</p>
+            <% end %>
+        </div>
+        <div class='w-1/2 pt-10 px-4'>
+            <div class='flex items-center mb-8'>
+                <h3 class='text-3xl font-semibold flex-grow'>Brokers</h3>
+                <%= link_to  new_admin_broker_path, class: 'border bg-gray-50 px-3 py-1 rounded-lg shadow' do %>
+                <i class="fas fa-plus mr-2"></i> Add Broker 
+                <% end %>
+            </div>
+            <% if @brokers.count != 0 %>
+                <table class='w-full'>
+                    <thead>
+                        <tr class='text-gray-500 shadow-md border'>
+                            <th class='text-left font-normal py-2 pl-2'>Email address</th>
+                            <th class='font-normal py-2 pl-2'>Status</th>
+                            <th class='font-normal py-2 pl-2'>Date registered</th>
+                            <th class='font-normal'>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @brokers.each do |broker| %>  
+                            <tr class="shadow border-b">
+                                <td class='py-4 pl-2'><%= broker.email %></td>
+                                <td class='text-center text-white'>
+                                    <span class="px-2 rounded-lg text-sm <%= broker.status == 'Unconfirmed' ? 'bg-red-300' :  broker.status == 'Pending' ? 'bg-blue-300' :  broker.status == 'Active' ? 'bg-green-300' : '' %>">
+                                        <%= broker.status %></td>
+                                    </span>
+                                <td class='text-center'><%= broker.created_at.to_date %></td>
+                                <td class='text-center text-gray-300'>
+                                    <%= link_to admin_broker_path(broker) do %>
+                                        <i class="far fa-eye px-1"></i>
+                                    <% end %>
+                                    <%= link_to edit_admin_broker_path(broker) do %>
+                                        <i class="fas fa-pen px-1"></i>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            <% else %>
+                <img src='/svg/no-result.svg' class='w-44 h-44 mx-auto mt-20'>
+                <p class="text-center mt-10 text-2xl text-gray-500">No Data</p>
+            <% end %>
+        </div>
+    </div>
+</div>
 
-<%if admin_signed_in?%>
-    <h1>admin_signed_in</h1>
-    <%= link_to "Sign Out", destroy_admin_session_path,method: :delete, class:"nav-link active" %>
-    <%= link_to "Edit Profile", edit_admin_registration_path, class:"nav-link active" %>  
-<%else%>
-  
-<%end%>

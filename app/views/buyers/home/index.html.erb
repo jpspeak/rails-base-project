@@ -1,9 +1,46 @@
-<p>Buyer Home</p>
 
-<%if buyer_signed_in?%>
-    <h1>buyer_signed_in</h1>
-    <%= link_to "Sign Out", destroy_buyer_session_path,method: :delete, class:"nav-link active" %>
-    <%= link_to "Edit Profile", edit_buyer_registration_path, class:"nav-link active" %>  
-<%else%>
-  
+
+<!--
+<%if broker_signed_in?%>
+    <%= link_to "Sign Out", destroy_broker_session_path,method: :delete, class:"nav-link active" %>
+    <%= link_to "Edit Profile", edit_broker_registration_path, class:"nav-link active" %>  
 <%end%>
+-->
+<div class='container mx-auto'>
+    <div class='w-full mt-10'>
+        <div class='flex items-center mb-8'>
+            <h3 class='text-3xl font-semibold flex-grow'>My Portfolio</h3>
+            <%= link_to  brokers_path, class: 'bg-green-700 text-white px-3 py-1 rounded-lg shadow' do %>
+                <i class="fas fa-plus mr-2"></i> Buy Stock
+            <% end %>
+        </div>
+        <% if @portfolio.count != 0 %>
+            <table class='w-full'>
+                <thead>
+                    <tr class='text-gray-500 shadow-md border'>
+                        <th class='text-left font-normal py-2 pl-2'>Symbol</th>
+                        <th class='text-left font-normal'>Company Name</th>
+                        <th class='text-left font-normal'>Latest Price</th>
+                        <th class='text-center font-normal'>Quantity</th>
+                        <th class='text-left font-normal'>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @portfolio.each do |portfolio_item| %>  
+                        <tr class="shadow border-b">
+                            <td class='py-4 pl-2 font-semibold'><%= portfolio_item.stock.symbol %></td>
+                            <td><%= portfolio_item.stock.company_name %></td>
+                            <td><%= number_to_currency(portfolio_item.stock.latest_price) %></td>
+                            <td class='text-center'><%= portfolio_item.quantity %></td>
+                            <td class="font-semibold"><%= number_to_currency(portfolio_item.total_amount) %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <% else %>
+            <img src='/svg/no-result.svg' class='w-44 h-44 mx-auto mt-20'>
+            <p class="text-center mt-10 text-2xl text-gray-500">No stocks added</p>
+        <% end %>
+    </div>
+</div>
+

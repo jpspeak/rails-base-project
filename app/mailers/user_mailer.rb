@@ -6,4 +6,8 @@ class UserMailer < ApplicationMailer
       mail(:to => @user.email, :subject => "Welcome!")
     end
 
+    def send_broker_approved_email(user)
+      mail(:to => user.email, :subject => "APPROVED BROKER ACCOUNT")
+    end
+
 end

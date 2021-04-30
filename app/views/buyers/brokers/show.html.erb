@@ -1,0 +1,29 @@
+<div class='container mx-auto'>
+    <div class='w-full mt-10'>
+        <div class='flex flex-col justify-center mb-8'>
+            <h3 class='text-3xl font-semibold mb-2'>Stocks</h3>
+            <p class="text-xs text-gray-500">BROKER: <%= @broker.email %></p>
+        </div>
+        <% if @broker.stocks.count != 0 %>
+            <div class="grid grid-cols-3 gap-4">
+                <% @broker.stocks.each do |broker_stock| %>  
+                    <%= link_to stock_path(broker_stock) do %>
+                        <div class="border shadow p-2 flex cursor-pointer hover:shadow-xl">
+                            <div class="flex-grow">
+                                <h3 class="text-lg font-semibold"><%= broker_stock.symbol %></h3>
+                                <p class="text-xs text-gray-500"><%= broker_stock.company_name %></p>
+                            </div> 
+                            <div>
+                                <p class="text-sm text-right <%= broker_stock.change >= 0 ? 'text-green-500' : 'text-red-500' %>"><i class="fas fa-long-arrow-alt-<%= broker_stock.change >= 0 ? 'up' : 'down' %> px-1"></i><%= broker_stock.change %></p>
+                                <p class="text-xl text-right"><%= number_to_currency(broker_stock.latest_price) %></p>
+                            </div> 
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        <% else %>
+            <img src='/svg/no-result.svg' class='w-44 h-44 mx-auto mt-20'>
+            <p class="text-center mt-10 text-2xl text-gray-500">No avaiable Stock</p>
+        <% end %>
+    </div>
+</div>

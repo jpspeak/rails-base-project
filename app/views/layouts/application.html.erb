@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rails Project</title>
+    <title>Xtock</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   </head>
 
   <body>
+    <%= render 'buyers/shared/navbar'%>
     <%= yield %>
+    <footer class='mt-20 flex py-20 justify-center bg-green-50'>
+      &#9400; All rights reserved | Xtock.com
+    </footer>
   </body>
 </html>
