@@ -1,0 +1,2 @@
+module Buyers::StocksHelper
+end

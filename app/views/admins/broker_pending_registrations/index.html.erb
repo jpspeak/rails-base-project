@@ -1,0 +1,35 @@
+<div class='container mx-auto'>
+    <div class=' space-x-2  min-h-screen'>
+        <div class='max-full mx-auto pt-10 px-4'>
+            <div class='flex items-center mb-8'>
+                <h3 class='text-3xl font-semibold flex-grow'>Pending Broker Accounts</h3>
+            </div>
+            <% if @brokers.count != 0 %>
+                <table class='w-full'>
+                    <thead>
+                        <tr class='text-gray-500 shadow-md border'>
+                            <th class='text-left font-normal py-2 pl-4'>Email address</th>
+                            <th class='font-normal py-2 pl-2'>Date registered</th>
+                            <th class='font-normal pr-4'>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @brokers.each do |broker| %>  
+                            <tr class="shadow border-b">
+                                <td class='py-4 pl-4'><%= broker.email %></td>
+                                <td class='text-center'><%= broker.created_at.to_date %></td>
+                                <td class='text-center pr-4'>
+                                    <%= link_to '<i class="fas fa-check"></i> Approve'.html_safe, admin_broker_approve_path(broker), method: :post, data: {disable_with: '<i class="fas fa-spinner animate-spin"></i> Processing..'.html_safe}, class: 'border shadow px-4 py-1 rounded-lg'  %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            <% else %>
+                <img src='/svg/no-result.svg' class='w-44 h-44 mx-auto mt-20'>
+                <p class="text-center mt-10">No Data</p>
+            <% end %>
+        </div>
+    </div>
+</div>
+
