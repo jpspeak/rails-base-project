@@ -1,0 +1,2 @@
+module Brokers::StocksHelper
+end

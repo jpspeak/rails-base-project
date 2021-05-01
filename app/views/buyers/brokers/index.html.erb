@@ -1,0 +1,20 @@
+<div class='container mx-auto'>
+    <h3 class='text-3xl font-semibold flex-grow mt-10 mb-8'>Stockbrokers</h3>
+    <div class='grid grid-cols-3 gap-4'>
+        <% if @brokers.count != 0 %>
+            <% @brokers.each do |broker| %>
+                <%= link_to broker_path(broker) do %>
+                    <div class="shadow border rounded-lg overflow-hidden cursor-pointer hover:shadow-xl">
+                        <img src="http://placehold.it/300x100" alt="broker-banner" class="w-full">
+                        <div class="p-2">
+                            <h3 class="text-lg font-semibold mb-2"><%= broker.email %></h3>
+                            <p class="text-gray-500 text-sm">Stocks: <span><%= broker.stocks.count %></span></p>
+                        </div>
+                    </div>
+                <% end %>    
+            <% end %>
+        <% else %>
+            <h3>No available brokers</h3>
+        <% end %>
+    </div>
+</div>
