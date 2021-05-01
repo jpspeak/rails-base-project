@@ -9,7 +9,7 @@ class Admins::BrokersController < ApplicationController
     def create
         @broker = Broker.new(broker_params)
         @broker.skip_confirmation!
-        # @broker.approved_at = DateTime.now
+        @broker.approved_at = DateTime.now
         if @broker.save
             flash[:success] = "User created successfully"
             redirect_to admin_root_path
