@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: ENV['MAILER_EMAIL']
+  default from: 'for.testing.ange@gmail.com'
 
   def send_welcome_email(user)
     @user = user
