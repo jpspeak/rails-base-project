@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Broker, type: :model do
 	describe 'ActiveRecord associations' do
 		it { expect(subject).to have_many(:stocks) }
-	do	
+	end
 	describe 'Broker status' do
 		it 'has a status of Unconfirmed if confirmed_at is nil' do
 			broker = Broker.new(confirmed_at: nil)
