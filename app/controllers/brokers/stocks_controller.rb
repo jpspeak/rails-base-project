@@ -4,10 +4,10 @@ class Brokers::StocksController < ApplicationController
   layout 'brokers'
 
   def must_be_approved
-    if current_broker.approved_at.nil?
-      flash[:error] = 'Sorry, your account is not yet approved'
-      redirect_to new_stocks_path
-    end
+    return unless current_broker.approved_at.nil?
+
+    flash[:error] = 'Sorry, your account is not yet approved'
+    redirect_to new_stocks_path
   end
 
   def new
@@ -29,7 +29,7 @@ class Brokers::StocksController < ApplicationController
         begin
           @stock_quote = client.quote(params[:symbol])
           @stock_logo = client.get("/stock/#{params[:symbol]}/logo", token: ENV['IEX_API_PUBLISHABLE_TOKEN'])
-        rescue StandardError => e
+        rescue StandardError
           @stock_quote = {}
         end
       end
