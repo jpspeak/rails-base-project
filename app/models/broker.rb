@@ -10,14 +10,8 @@ class Broker < ApplicationRecord
   has_many :stocks, dependent: :destroy
 
   def status
-    if confirmed_at.nil?
-      return 'Unconfirmed'
-    end
-    if approved_at.nil?
-      return 'Pending'
-    end
-    if !approved_at.nil?
-      return 'Active'
-    end
+    return 'Unconfirmed' if confirmed_at.nil?
+    return 'Pending' if approved_at.nil?
+    return 'Active' unless approved_at.nil?
   end
 end
