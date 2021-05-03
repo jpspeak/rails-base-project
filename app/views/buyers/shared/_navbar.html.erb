@@ -1,5 +1,5 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="bg-white border-b shadow">
+<nav class="bg-white <%= 'border-b shadow' if buyer_signed_in? %>">
   <div class="container mx-auto px-2">
     <div class="relative flex items-center justify-between h-16">
       <% if buyer_signed_in? %>

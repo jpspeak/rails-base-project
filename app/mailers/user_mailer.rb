@@ -1,9 +1,7 @@
 class UserMailer < ApplicationMailer
-  default from: 'for.testing.ange@gmail.com'
-
   def send_welcome_email(user)
     @user = user
-    mail(to: @user.email, subject: 'Welcome!')
+    mail(to: @user.email, subject: 'Welcome to XTock!')
   end
 
   def send_broker_approved_email(user)

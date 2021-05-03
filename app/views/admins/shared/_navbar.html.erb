@@ -1,5 +1,5 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="bg-white border-b shadow">
+<nav class="bg-white <%= 'border-b shadow' if admin_signed_in? %>">
   <div class="container mx-auto px-2">
     <div class="relative flex items-center justify-between h-16">
       <% if admin_signed_in? %>
@@ -41,7 +41,10 @@
                 <div class="flex space-x-2">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <%= link_to 'Users', admin_root_path, class: "#{current_page?(admin_root_path) ? "text-green-700 font-bold" : "text-black-700"} px-3 py-2 rounded-md text-sm " %>
-                    <%= link_to 'Pending Brokers', admin_broker_pending_registrations_path, class: "#{current_page?(admin_broker_pending_registrations_path) ? "text-green-700 font-bold" : "text-black-700"}  px-3 py-2 rounded-md text-sm " %>
+                    <%# <%= link_to 'Pending Brokers', admin_broker_pending_registrations_path, class: "#{current_page?(admin_broker_pending_registrations_path) ? "text-green-700 font-bold" : "text-black-700"}  px-3 py-2 rounded-md text-sm " %> 
+                    <%= link_to admin_broker_pending_registrations_path, class: "#{current_page?(admin_broker_pending_registrations_path) ? "text-green-700 font-bold" : "text-black-700"}  px-3 py-2 rounded-md text-sm " do %>
+                      Pending Brokers <%= "<span class='border rounded-full px-2'>#{@pending_broker_count}</span>".html_safe if @pending_broker_count > 0%>
+                    <% end %>
                     <%= link_to 'Transactions', admin_transactions_path, class: "#{current_page?(admin_transactions_path) ? "text-green-700 font-bold" : "text-black-700"}  px-3 py-2 rounded-md text-sm " %>
                    
                     <%# <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Task Categories</a> %>
