@@ -122,5 +122,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   #FOR HEROKU
-  #config.action_mailer.default_url_options = { host: 'HEROKU WEBSITE' }
+  config.action_mailer.default_url_options = { host: 'xtock.herokuapp.com' }
 end
