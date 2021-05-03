@@ -16,7 +16,7 @@ class Buyers::StocksController < ApplicationController
     stock = Stock.find(params[:id])
     stock_total_price = stock.latest_price * params[:quantity].to_i
     buyer_stock = BuyersStock.where(stock_id: stock.id).first
-    
+
     if buyer_stock
       buyer_stock.quantity += params[:quantity].to_i
       buyer_stock.total_amount += stock_total_price
