@@ -53,3 +53,7 @@ Rails/ApplicationController:
 
 Rails/HasAndBelongsToMany:
   Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/**/*"
