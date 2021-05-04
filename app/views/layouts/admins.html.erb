@@ -21,6 +21,7 @@
 
   <body>
     <%= render 'admins/shared/navbar'%>
+    <p class="notice text-center bg-green-700 text-white"><%= notice %></p>
     <%= yield %>
     <% if flash[:success] %>
       <script type="text/javascript">
