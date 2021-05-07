@@ -40,7 +40,7 @@ jobs:
       run: bundle exec rubocop
 
     - name: Run Tests
-      run: bundle exec rspec
+      run: bundle exec rspec --exclude-pattern "spec/system/*"
       env:
         DATABASE_HOST: 127.0.0.1
         DATABASE_USERNAME: 'postgres'
